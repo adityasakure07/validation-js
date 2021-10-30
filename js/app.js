@@ -6,6 +6,8 @@ const phone = document.getElementById('phone');
 let validEmail = false;
 let validPhone = false;
 let validUser = false;
+$('#failure').hide();
+$('#success').hide();
 
 // console.log(name);
 
@@ -64,4 +66,44 @@ phone.addEventListener('blur', ()=>{
         validPhone = false;
         
     }
+})
+
+
+// adding validation on Submit
+
+let submit = document.getElementById('submit');
+submit.addEventListener('click', (e)=>{
+    // will prevent getting to next page
+    e.preventDefault();
+
+    console.log('You clicked on submit');
+    console.log(validEmail, validUser, validPhone);
+    
+    // Submit your form here
+    if(validEmail && validUser && validPhone){
+        let failure = document.getElementById('failure');
+
+        console.log('Phone, email and user are valid. Submitting the form');
+        let success = document.getElementById('success');
+        success.classList.add('show');
+        // failure.classList.remove('show');
+        // $('#failure').alert('close');
+        $('#failure').hide();
+        $('#success').show();
+        
+    }
+    else{
+        console.log('One of Phone, email or user are not valid. Hence not submitting the form. Please correct the errors and try again');
+        let failure = document.getElementById('failure');
+        failure.classList.add('show');
+        // success.classList.remove('show');
+        // $('#success').alert('hide');
+
+        //using jquery
+        $('#success').hide();
+        $('#failure').show();
+        }
+
+    
+    
 })
